@@ -40,9 +40,13 @@ class ViewWithScrollViewComponent: UIView {
     
     func keyboardWillHide(notification:NSNotification){
         
-        let pointZero:CGPoint = CGPointZero;
-        scrollView.contentOffset = pointZero;
-        scrollView.contentInset = contentInset;
+        let pointZero:CGPoint = CGPointZero
+        scrollView.contentOffset = pointZero
+        scrollView.contentInset = contentInset
     }
-
+    
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
 }
